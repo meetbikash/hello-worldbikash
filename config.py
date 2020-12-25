@@ -12,7 +12,7 @@ class Config(object):
     SQL_SERVER = 'hellowworlddb.database.windows.net'
     SQL_DATABASE = 'hellowworlddb.database.windows.net'
     SQL_USER_NAME = 'bikash'
-    SQL_PASSWORD = 'Udacity@'
+    SQL_PASSWORD = 'Udacity@9851225856'
     # Below URI may need some adjustments for driver version, based on your OS, if running locally
     SQLALCHEMY_DATABASE_URI = 'mssql+pyodbc://' + SQL_USER_NAME + '@' + SQL_SERVER + ':' + SQL_PASSWORD + '@' + SQL_SERVER + ':1433/' + SQL_DATABASE  + '?driver=ODBC+Driver+17+for+SQL+Server'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
