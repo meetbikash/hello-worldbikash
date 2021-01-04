@@ -38,8 +38,8 @@ Automatically move your SQL database along with your legacy application.
 
 
 *Detail how the app and any other needs would have to change for you to change your decision in the last section.* 
-When we decide to host a web application in the Azure cloud, the opportunity to explore the resources offered by a leading public cloud provider was exciting. How would Microsoft – with their deep experience and mature ecosystem – handle features like high availability, smart load balancing, and auto scaling?
-It turns out that just choosing the right hosting service from Azure’s rich collection can be something of a challenge.
-So, following the helpful Azure documentation, I successfully deployed my app using the App Service. Things went very smoothly… until I wanted to verify my server configurations and analyze some performance issues. It seems this isn’t possible, since App Service is a managed platform that handles deployment for you. There is no simple way to gain access to the app configuration files once it’s running.
-In my case, this wasn’t ideal. I need remote access to the underlying web server, so that I can personally configure server tasks.
+When we decide to host a web application in the Azure cloud, the opportunity to explore the resources offered by a leading public cloud provider was exciting. How would Microsoft â€“ with their deep experience and mature ecosystem â€“ handle features like high availability, smart load balancing, and auto scaling?
+It turns out that just choosing the right hosting service from Azureâ€™s rich collection can be something of a challenge.
+So, following the helpful Azure documentation, I successfully deployed my app using the App Service. Things went very smoothlyâ€¦ until I wanted to verify my server configurations and analyze some performance issues. It seems this isnâ€™t possible, since App Service is a managed platform that handles deployment for you. There is no simple way to gain access to the app configuration files once itâ€™s running.
+In my case, this wasnâ€™t ideal. I need remote access to the underlying web server, so that I can personally configure server tasks.
 Azure App Servie, Azuru Cloud Service  and Virtual Machines are the three services that Microsoft Azure provides.
